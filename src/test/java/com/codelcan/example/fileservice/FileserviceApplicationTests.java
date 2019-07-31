@@ -30,4 +30,8 @@ public class FileserviceApplicationTests {
 		userRepository.save(user);
 	}
 
+	@Test
+	public void canCreateFolder() {
+
+	}
 }

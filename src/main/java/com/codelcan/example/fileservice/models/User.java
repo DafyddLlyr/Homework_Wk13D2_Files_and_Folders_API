@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,12 +19,12 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @JsonIgnoreProperties("folders")
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Folder> folders;
 
     public User(String name) {
         this.name = name;
+        this.folders = new ArrayList<>();
     }
 
     public User() {
@@ -56,4 +57,5 @@ public class User {
     public void addFolder(Folder folder) {
         this.folders.add(folder);
     }
+
 }
